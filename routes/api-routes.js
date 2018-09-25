@@ -7,7 +7,7 @@
 const todos = require('../data/todos.js');
 
 // Sample todo is a dummy todo for validation purposes
-const sampleTodo = require('../data/sample-toDoList.json');
+const sampleTodo = require('../data/sampleTodo.json');
 
 
 
