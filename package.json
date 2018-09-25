@@ -1,0 +1,23 @@
+{
+  "name": "simpletodolist",
+  "version": "1.0.0",
+  "description": "to do list",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/justinkook/simpletodolist.git"
+  },
+  "author": "Justin Kook",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/justinkook/simpletodolist/issues"
+  },
+  "homepage": "https://github.com/justinkook/simpletodolist#readme",
+  "dependencies": {
+    "express": "^4.16.3",
+    "mongoose": "^5.2.17"
+  }
+}
