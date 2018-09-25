@@ -1,4 +1,4 @@
-var todos = [{
+const todos = [{
     text: "walk the dog",
     completed: false
 },
