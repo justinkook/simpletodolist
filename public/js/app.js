@@ -32,14 +32,16 @@ $(function () {
 
     const todoElement = $('<li>').addClass('todo');
 
+    const label = $('<label>').addClass('linethrough');
     const checkbox = $('<input type="checkbox">')
       .attr('checked', todo.completed)
       .addClass('completed')
       .attr('data-index', index);
 
+
     label.append(checkbox);
 
-    todoEl.append(
+    todoElement.append(
       label,
 
       $('<span>').text(todo.text).addClass('list-text'),
