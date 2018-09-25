@@ -1,0 +1,64 @@
+body {
+    font-family: 'Montserrat', sans-serif;
+    margin: 0px;
+    height: 100vh;
+}
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    color: white;
+    background: #3A1C71;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #FFAF7B, #D76D77, #3A1C71);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to left, #FFAF7B, #D76D77, #3A1C71); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    margin-top: 15px;
+    padding: 5px;
+    margin-right: 15px;
+}
+
+input {
+    border-radius: 8px;
+    width: 80%;
+}
+form {
+    height: 50px;
+    width: 100%;
+    margin-bottom: 15px;
+}
+input {
+    margin: 10px;
+}
+
+h1 {
+    font-weight: 300;
+    padding: 10px;
+}
+
+section {
+    border-top: 1px solid grey;
+    height: 100%;
+    margin: 10px;
+    padding: 10px;
+}
+
+.linethrough {
+    text-decoration: line-through;
+}
+.renderedItem {
+    background-color: grey;
+    border-radius: 8px;
+}
+
+@media only screen and (min-width: 600px) {
+    main {
+        border: 15px solid linear-gradient(to right, #FFAF7B, #D76D77, #3A1C71);
+        width: 30%;
+        margin-left: 550px;
+    }
+}
