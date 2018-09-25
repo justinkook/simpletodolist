@@ -19,13 +19,18 @@ $(function () {
     getTodos();
   }
 
+  const toggleLine = () => {
+    $('.list-text').toggleClass('linethrough');
+  }
+  $('<input type="checkbox">').on('click',toggleLine);
+
   /**
    * TODO schema = { text: 'my todo text', completed: false }
    */
   const renderTodo = function (outputElement, todo, index) {
     const output = $(outputElement);
 
-    const todoEl = $('<div>').addClass('todo');
+    const todoEl = $('<li>').addClass('todo');
 
     const label = $('<label>').addClass('fancy-checkbox');
     const checkbox = $('<input type="checkbox">')
@@ -35,8 +40,8 @@ $(function () {
 
 
     label.append(checkbox);
-    label.append('<i class="fas fa-check-square checked">');
-    label.append('<i class="far fa-square unchecked">');
+    // label.append('<i class="fas fa-check-square checked">');
+    // label.append('<i class="far fa-square unchecked">');
 
     todoEl.append(
       label,
