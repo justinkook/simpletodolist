@@ -30,18 +30,14 @@ $(function () {
   const renderTodo = function (outputElement, todo, index) {
     const output = $(outputElement);
 
-    const todoEl = $('<li>').addClass('todo');
+    const todoElement = $('<li>').addClass('todo');
 
-    const label = $('<label>').addClass('fancy-checkbox');
     const checkbox = $('<input type="checkbox">')
       .attr('checked', todo.completed)
       .addClass('completed')
       .attr('data-index', index);
 
-
     label.append(checkbox);
-    // label.append('<i class="fas fa-check-square checked">');
-    // label.append('<i class="far fa-square unchecked">');
 
     todoEl.append(
       label,
@@ -49,13 +45,12 @@ $(function () {
       $('<span>').text(todo.text).addClass('list-text'),
 
       $('<button>')
-      // .text('x')
       .addClass('delete')
       .attr('data-index', index)
       .append('<i>').addClass('fas fa-times')
     );
 
-    output.append(todoEl);
+    output.append(todoElement);
   }
 
   const renderTodos = function (outputElement, todos) {
