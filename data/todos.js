@@ -8,10 +8,7 @@ var Schema = mongoose.Schema;
 // Using the Schema constructor, create a new UserSchema object
 var todoSchema = new Schema({
     todoID: {
-        type: Number,
-        trim: true,
-        unique: true,
-        required: "To do ID is Required"
+        type: Schema.Types.ObjectId,
     },
     text: {
         type: String,
