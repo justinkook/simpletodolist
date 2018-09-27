@@ -4,10 +4,10 @@
 // These data sources hold arrays of information on todo-data, waitinglist, etc.
 // ===============================================================================
 
-const todos = require('../data/todos.js');
+const db = require('../data');
 
 // Sample todo is a dummy todo for validation purposes
-const sampleTodo = require('../data/sampleTodo.json');
+// const sampleTodo = require('../data/sampleTodo.json');
 
 
 
@@ -23,44 +23,60 @@ module.exports = function (app) {
   // GET Request
   // Responds with all the currently reserved todos
   app.get('/api/todos', function (req, res) {
-    res.json(todos);
+    db.todos.find({})
+      .then(function (dbtodos) {
+        res.json(dbtodos);
+      })
+      .catch(function (err) {
+        res.json(err);
+      });
   });
 
   // POST Request
   // Adds a new todo to our data collection
   // Responds with success: true or false if successful
-  app.post('/api/todos', function (req, res) {
+  app.post('/api/todos/post', function (req, res) {
 
     // Checks to make sure every property on the req.body is also on sampleTodo
     // If it's not, returns with success: false and exits the function
-    for (let key in req.body) {
-      if (!sampleTodo.hasOwnProperty(key)) {
-        return res.json({
-          success: false
-        });
-      }
-    }
+    // for (let key in req.body) {
+    //   if (!sampleTodo.hasOwnProperty(key)) {
+    //     return res.json({
+    //       success: false
+    //     });
+    //   }
+    // }
 
-    // Checks to make sure every property on the sampleTodo is also on req.body
-    // If it's not, returns with success: false and exits the function
-    for (let key in sampleTodo) {
-      if (!req.body.hasOwnProperty(key)) {
-        return res.json({
-          success: false
-        });
-      }
-    }
+    // // Checks to make sure every property on the sampleTodo is also on req.body
+    // // If it's not, returns with success: false and exits the function
+    // for (let key in sampleTodo) {
+    //   if (!req.body.hasOwnProperty(key)) {
+    //     return res.json({
+    //       success: false
+    //     });
+    //   }
+    // }
 
-    const confirmation = { success: true };
+    db.todos.create(req.body)
+      .then(function (dbtodos) {
+        // If saved successfully, send the the new User document to the client
+        res.json(dbtodos);
+      })
+      .catch(function (err) {
+        // If an error occurs, send the error to the client
+        res.json(err);
+      });
 
-    // ensrue boolean values
-    req.body.completed = req.body.completed === 'true';
+    // const confirmation = { success: true };
 
-    // ADD THE TODO
-    todos.push(req.body);
+    // // ensrue boolean values
+    // req.body.completed = req.body.completed === 'true';
 
-    // Send back a confirmation the POST was successfully processed to end the response
-    res.json(confirmation);
+    // // ADD THE TODO
+    // db.todos.push(req.body);
+
+    // // Send back a confirmation the POST was successfully processed to end the response
+    // res.json(confirmation);
   });
 
   // API Requests for /api/todos/:index
@@ -69,58 +85,86 @@ module.exports = function (app) {
   // example: GET /api/todo/0
   // GET Request
   // Responds with just the requested todo at the referenced index
-  app.get('/api/todos/:index', function (req, res) {
-    res.json(todos[req.params.index]);
-  });
+  // app.get('/api/todos/:index', function (req, res) {
+  //   res.json(todos[req.params.index]);
+  // });
 
   // PUT Request
   // Replaces the todo at the referenced index with the one provided
   // Responds with success: true or false if successful
-  app.put('/api/todos/:index', function (req, res) {
+  app.put('/api/todos/update', function (req, res) {
 
     // Using the same validation as our POST route to check if the included data is valid
     // Checks to make sure every property on the req.body is also on sampleTodo
     // If it's not, returns with success: false and exits the function
-    for (let key in req.body) {
-      if (!sampleTodo.hasOwnProperty(key)) {
-        return res.json({
-          success: false
-        });
-      }
-    }
+    // for (let key in req.body) {
+    //   if (!sampleTodo.hasOwnProperty(key)) {
+    //     return res.json({
+    //       success: false
+    //     });
+    //   }
+    // }
 
-    // Checks to make sure every property on the sampleTodo is also on req.body
-    // If it's not, returns with success: false and exits the function
-    for (let key in sampleTodo) {
-      if (!req.body.hasOwnProperty(key)) {
-        return res.json({
-          success: false
-        });
-      }
-    }
+    // // Checks to make sure every property on the sampleTodo is also on req.body
+    // // If it's not, returns with success: false and exits the function
+    // for (let key in sampleTodo) {
+    //   if (!req.body.hasOwnProperty(key)) {
+    //     return res.json({
+    //       success: false
+    //     });
+    //   }
+    // }
+
+    db.todos.findOneAndUpdate({
+        todoID: req.body.todoID
+      }, {
+        $set: {
+          text: req.body.text
+        }
+      })
+      .then(function (dbtodos) {
+        // If saved successfully, send the the new User document to the client
+        res.json(dbtodos);
+      })
+      .catch(function (err) {
+        // If an error occurs, send the error to the client
+        res.json(err);
+      });
 
     // ensrue boolean values
-    req.body.completed = req.body.completed === 'true';
+    // req.body.completed = req.body.completed === 'true';
 
-    // Replace the referenced todo with the one provided in the body
-    todos.splice(req.params.index, 1, req.body);
-    res.json({
-      success: true
-    });
+    // // Replace the referenced todo with the one provided in the body
+    // todos.splice(req.params.index, 1, req.body);
+    // res.json({
+    //   success: true
+    // });
   });
 
   // DELETE Request
   // Removes the todo at the referenced index
   // If there are todos on the waiting list, moves them to the reserved todos list
   // Responds with success: true or false if successful
-  app.delete('/api/todos/:index', function (req, res) {
+  app.delete('/api/todos/delete', function (req, res) {
+
+    db.todos.remove({
+        todoID: req.params.todoID
+      })
+      .then(function (dbtodos) {
+        // If saved successfully, send the the new User document to the client
+        res.json(dbtodos);
+      })
+      .catch(function (err) {
+        // If an error occurs, send the error to the client
+        res.json(err);
+      });
 
     // Remove the referenced todo from the todos
-    todos.splice(req.params.index, 1);
+    // todos.splice(req.params.index, 1);
 
-    // Respond that this operation was successfully completed
-    res.json({
-      success: true
-    });
+    // // Respond that this operation was successfully completed
+    // res.json({
+    //   success: true
+    // });
   });
 }
