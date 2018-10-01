@@ -29,8 +29,8 @@ $(function () {
 
 
     label.append(checkbox);
-    label.append('<i class="fas fa-check-square checked">');
-    label.append('<i class="far fa-square unchecked">');
+    // label.append('<i class="fas fa-check-square checked">');
+    // label.append('<i class="far fa-square unchecked">');
 
     todoEl.append(
       label,
