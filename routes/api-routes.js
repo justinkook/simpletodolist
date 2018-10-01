@@ -4,8 +4,8 @@ module.exports = function (app) {
 
   app.get('/api/todos', function (req, res) {
     todos.find({})
-      .then(function (allTodos) {
-        res.json(allTodos);
+      .then(function (dbtodos) {
+        res.json(dbtodos);
       })
       .catch(function (err) {
         res.json(err);
@@ -15,13 +15,11 @@ module.exports = function (app) {
   app.post('/api/todos', function (req, res) {
     todos.create(req.body)
       .then(function (dbtodos) { 
-        console.log(dbtodos);
         res.json({
           success: true
         });
       })
       .catch(function (err) { 
-        console.log(err);
         res.json({
           success: false
         });
@@ -39,13 +37,11 @@ module.exports = function (app) {
         }
       })
       .then(function (dbtodos) { 
-        console.log(dbtodos);
         res.json({
           success: true
         });
       })
       .catch(function (err) { 
-        console.log(err);
         res.json({
           success: false
         });
@@ -59,13 +55,11 @@ module.exports = function (app) {
         _id: req.params.id
       })
       .then(function (dbtodos) { 
-        console.log(dbtodos);
         res.json({
           success: true
         });
       })
       .catch(function (err) { 
-        console.log(err);
         res.json({
           success: false
         });
