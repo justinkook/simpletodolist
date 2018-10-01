@@ -17,7 +17,7 @@ var todoSchema = new Schema({
     },
     completed: {
         type: Boolean,
-        required: "Completion Status is Required"
+        default: false,
     },
 });
 
