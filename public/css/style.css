@@ -7,6 +7,7 @@ nav {
     display: flex;
     align-items: center;
     justify-content: left;
+    height: 50px;
     width: 100%;
     color: white;
     background: #3A1C71;  /* fallback for old browsers */
@@ -18,7 +19,7 @@ input {
     border-radius: 8px;
 }
 form {
-    height: 50px;
+    height: 60px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -29,8 +30,9 @@ form {
 }
 
 h1 {
-    font-weight: 300;
+    font-weight: 100;
     padding: 10px;
+    font-size: 20px;
 }
 
 #todos {
@@ -48,14 +50,15 @@ h1 {
     grid-template-rows: repeat(1,1fr);
     margin-top: 10px;
     padding: 15px;
-    background-color: rgba(255, 255, 255, 0.3);
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
 }
 
 .todo:nth-child(1) {
-    background-color: rgba(255, 255, 255, 0.6);
+    background-color: rgba(0, 0, 0, 0.3);
 }
 .todo:nth-child(2) {
-    background-color: rgba(255, 255, 255, 0.4);
+    background-color: rgba(0, 0, 0, 0.2);
 }
 
 .todo:hover {
@@ -80,13 +83,11 @@ h1 {
 
 main {
     height: 80vh;
-    background: #3A1C71;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #FFAF7B, #D76D77, #3A1C71);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #FFAF7B, #D76D77, #3A1C71); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 @media only screen and (min-width: 600px) {
     main {
-        border: 5px solid #3A1C71;
+        border: 1px solid #3A1C71;
+        border-radius: 5px;
         height: 80vh;
         margin-left: 50vh;
         margin-right: 50vh;

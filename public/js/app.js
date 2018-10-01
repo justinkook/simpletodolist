@@ -13,13 +13,10 @@ $(function () {
     getTodos();
   }
 
-  /*
-   * TODO schema = { text: 'my todo text', completed: false }
-   */
   const renderTodo = function (outputElement, todo) {
     const output = $(outputElement);
 
-    const todoEl = $('<div>').addClass('todo');
+    const todoElement = $('<div>').addClass('todo');
 
     const label = $('<label>').addClass('fancy-checkbox');
     const checkbox = $('<input type="checkbox">')
@@ -32,18 +29,18 @@ $(function () {
     // label.append('<i class="fas fa-check-square checked">');
     // label.append('<i class="far fa-square unchecked">');
 
-    todoEl.append(
+    todoElement.append(
       label,
 
       $('<span>').text(todo.text).addClass('list-text'),
 
-      $('<button>')
+      $('<i>')
       .addClass('delete')
       .attr('data-id', todo._id)
-      .append('<i>').addClass('fas fa-times')
+      .addClass('fas fa-times')
     );
 
-    output.append(todoEl);
+    output.append(todoElement);
   }
 
   const renderTodos = function (outputElement, todos) {
@@ -66,12 +63,12 @@ $(function () {
 
   // ADD NEW TODO
   // Click listener for the submit button
-  $('.submit').on('click', function (event) {
-    event.preventDefault();
+  $('.submit').on('click', function (e) {
+    e.preventDefault();
 
     // Here we grab the form elements
     const newTodo = {
-      text: $('#new-todo-text').val().trim(),
+      text: $('#toDoInput').val().trim(),
       completed: false,
     };
 
@@ -87,16 +84,13 @@ $(function () {
       data: newTodo
     }).then(
       function (data) {
-        console.log('app.js103: ' + JSON.stringify(data));
         if (data) {
 
-          console.log('data', data)
-
           // Clear the form when submitting
-          $('#new-todo-text').val('');
+          $('#toDoInput').val(null);
 
           // Set the users focus (cursor) to input
-          $('#new-todo-text').focus();
+          $('#toDoInput').focus();
 
           render();
         } else {
@@ -109,7 +103,7 @@ $(function () {
   // UPDATE TODO COMPLETED STATUS
   $('body').on('click', '.completed', function (event) {
     const todoId = $(this).attr('data-id');
-    const completed = event.target.checked; // TODO use jquery for this
+    const completed = event.target.checked;
 
     // Make the PUT request
     $.ajax({
