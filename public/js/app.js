@@ -18,7 +18,7 @@ $(function () {
 
     const todoElement = $('<div>').addClass('todo');
 
-    const label = $('<label>').addClass('fancy-checkbox');
+    const label = $('<label>').addClass('check-box');
     const checkbox = $('<input type="checkbox">')
       .attr('checked', todo.completed)
       .addClass('completed')
@@ -26,8 +26,8 @@ $(function () {
 
 
     label.append(checkbox);
-    // label.append('<i class="fas fa-check-square checked">');
-    // label.append('<i class="far fa-square unchecked">');
+    label.append(`<i class="fas fa-check-square checked">`);
+    label.append(`<i class="far fa-square unchecked">`);
 
     todoElement.append(
       label,

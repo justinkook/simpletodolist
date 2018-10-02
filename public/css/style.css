@@ -29,6 +29,35 @@ form {
     width: 300px;
 }
 
+.completed, .check-box {
+    color: black;
+    cursor: pointer;
+}
+
+.check-box input[type="checkbox"], .check-box .checked{
+    display: none;
+}
+
+.check-box input[type="checkbox"]:checked~.checked {
+    display: block;
+}
+
+.check-box input[type="checkbox"]:checked~.unchecked {
+    display: none;
+}
+
+.fa-times {
+    cursor: pointer;
+}
+
+.submit {
+    cursor: pointer;
+}
+
+.submit:hover {
+    color: lightslategrey;
+}
+
 h1 {
     font-weight: 100;
     padding: 10px;
@@ -42,6 +71,7 @@ h1 {
     display: block;
     margin-left: 0;
     margin-right: 0;
+    overflow: hidden;
 }
 
 .todo {
@@ -61,10 +91,10 @@ h1 {
     background-color: rgba(0, 0, 0, 0.2);
 }
 
-.todo:hover {
-    background-color: rgba(0, 0, 0, 0.4);
+.check-box:hover, .todo:hover {
     color: white;
 }
+
 .linethrough {
     text-decoration: line-through;
 }
@@ -83,6 +113,7 @@ h1 {
 
 main {
     height: 80vh;
+    overflow: hidden;
 }
 @media only screen and (min-width: 600px) {
     main {
