@@ -91,7 +91,12 @@ h1 {
     background-color: rgba(0, 0, 0, 0.2);
 }
 
-.check-box:hover, .todo:hover {
+.todo:hover {
+    background-color: rgba(0, 0, 0, 0.4);
+    color: white;
+}
+
+.check-box:hover {
     color: white;
 }
 
